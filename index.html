@@ -178,9 +178,9 @@ footer small{color:#9ba2b0}
 <span class="fl" data-en="Other signs">Tanda lain</span>
 <div class="chipset"><button type="button" class="chip" data-g="amb" aria-pressed="false" data-en="Not eating for over a day">Tidak makan lebih sehari</button><button type="button" class="chip" data-g="amb" aria-pressed="false" data-en="Diarrhoea">Cirit-birit</button><button type="button" class="chip" data-g="amb" aria-pressed="false" data-en="Constipation">Sembelit</button><button type="button" class="chip" data-g="amb" aria-pressed="false" data-en="Ear scratching / head shaking">Garu telinga / goncang kepala</button><button type="button" class="chip" data-g="amb" aria-pressed="false" data-en="Skin sores or wounds that won't heal">Kudis atau luka tak sembuh</button><button type="button" class="chip" data-g="amb" aria-pressed="false" data-en="Sneezing / flu">Bersin / selsema</button><button type="button" class="chip" data-g="amb" aria-pressed="false" data-en="Vaccination or neutering">Nak vaksin atau kembiri</button></div>
 <div class="row2"><div><label class="fl" for="nm" data-en="Cat's name (optional)">Nama kucing (pilihan)</label><input id="nm" autocomplete="off" placeholder="cth. Oyen" data-en-ph="e.g. Oyen"></div>
-<div><label class="fl" for="age" data-en="Age">Umur</label><select id="age"><option data-en="Kitten (under 1)">Anak (bawah 1 tahun)</option><option data-en="Adult (1–10)">Dewasa (1–10 tahun)</option><option data-en="Senior (over 10)">Tua (lebih 10 tahun)</option></select></div></div>
+<div><label class="fl" for="age" data-en="Age">Umur</label><select id="age"><option data-en="Kitten (under 1)">Anak (bawah 1 tahun)</option><option selected data-en="Adult (1–10)">Dewasa (1–10 tahun)</option><option data-en="Senior (over 10)">Tua (lebih 10 tahun)</option></select></div></div>
 <span class="fl" data-en="Branch">Cawangan</span>
-<div class="chipset" style="margin:0"><button type="button" class="chip" data-g="br" data-single="br" aria-pressed="true" data-en="Cheng (Family & Surgeri)">Cheng (Family & Surgeri)</button><button type="button" class="chip" data-g="br" data-single="br" aria-pressed="false" data-en="Klebang">Klebang</button></div>
+<div class="chipset" style="margin:0"><button type="button" class="chip" data-g="br" data-single="br" aria-pressed="true" data-en="Taman Cheng Perdana">Taman Cheng Perdana</button><button type="button" class="chip" data-g="br" data-single="br" aria-pressed="false" data-en="Klebang">Klebang</button></div>
 </div>
 <div class="res" id="res" aria-live="polite"><p class="big" id="rh"></p><div id="ra"></div><a class="btn pri" id="go" href="#" rel="noopener" aria-disabled="true">WhatsApp</a><p style="margin:10px 0 0"><a class="btn sec" id="call" href="tel:+6063121010" style="width:100%" data-en="Call 06-312 1010">Telefon 06-312 1010</a></p><p class="hint" data-en="General guidance only. If you are worried, call the clinic.">Panduan umum sahaja. Jika anda risau, telefon klinik.</p></div></div>
 </div></section>
@@ -237,7 +237,7 @@ function upd(){
  else{h=T('Tandakan tanda yang anda nampak','Tick the signs you see');al=''}
  q('#rh').textContent=h;q('#ra').innerHTML=al;
  const go=q('#go'),ok=all.length>0;go.setAttribute('aria-disabled',!ok);go.textContent=r.length?T('WhatsApp kes segera','WhatsApp urgent case'):T('Hantar ke WhatsApp','Send to WhatsApp');
- if(ok){const m=T('Salam Klinik Veterinar Family & Surgeri ('+br+'). '+(r.length?'KES SEGERA. ':'')+'Kucing saya'+(nm?' ('+nm+')':'')+', '+age+', ada tanda berikut:\n• '+all.join('\n• ')+'\nBoleh bantu?','Hello Family & Surgeri Vet ('+br+'). '+(r.length?'URGENT CASE. ':'')+'My cat'+(nm?' ('+nm+')':'')+', '+age+', has these signs:\n• '+all.join('\n• ')+'\nCan you help?');go.href=WA('60169361993')+encodeURIComponent(m)}else go.href='#';
+ if(ok){const m=T('Salam Klinik Veterinar Family & Surgeri, cawangan '+br+'. '+(r.length?'KES SEGERA. ':'')+'Kucing saya'+(nm?' ('+nm+')':'')+', '+age+', ada tanda berikut:\n• '+all.join('\n• ')+'\nBoleh bantu?','Hello Family & Surgeri Vet, '+br+' branch. '+(r.length?'URGENT CASE. ':'')+'My cat'+(nm?' ('+nm+')':'')+', '+age+', has these signs:\n• '+all.join('\n• ')+'\nCan you help?');go.href=WA('60169361993')+encodeURIComponent(m)}else go.href='#';
 }
 q('#go').addEventListener('click',ev=>{if(q('#go').getAttribute('aria-disabled')==='true')ev.preventDefault()});
 
@@ -246,9 +246,9 @@ function fabT(){fab.classList.toggle('off',scrollY<560||inTool)}
 new IntersectionObserver(es=>{inTool=es[0].isIntersecting;fabT()}).observe(q('#tool'));
 addEventListener('scroll',fabT,{passive:true});
 const lang=q('#lang');
-function setL(l){L=l;document.documentElement.lang=l==='en'?'en':'ms';els.forEach(e=>e.innerHTML=l==='en'?e.dataset.en:e.dataset.ms);alts.forEach(e=>e.alt=l==='en'?e.dataset.enAlt:e.dataset.msAlt);phs.forEach(e=>e.placeholder=l==='en'?e.dataset.enPh:e.dataset.msPh);lang.textContent=l==='en'?'BM':'EN';lang.setAttribute('aria-label',l==='en'?'Tukar ke Bahasa Melayu':'Switch to English');upd();try{localStorage.setItem('L',l)}catch(e){}}
+function setL(l){L=l;document.documentElement.lang=l==='en'?'en':'ms';els.forEach(e=>e.innerHTML=l==='en'?e.dataset.en:e.dataset.ms);alts.forEach(e=>e.alt=l==='en'?e.dataset.enAlt:e.dataset.msAlt);phs.forEach(e=>e.placeholder=l==='en'?e.dataset.enPh:e.dataset.msPh);lang.textContent=l==='en'?'BM':'EN';lang.setAttribute('aria-label',l==='en'?'Tukar ke Bahasa Melayu':'Switch to English');upd();try{localStorage.setItem('L'+location.pathname,l)}catch(e){}}
 lang.addEventListener('click',()=>setL(L==='en'?'ms':'en'));
-try{if(localStorage.getItem('L')==='en')setL('en');else upd()}catch(e){upd()}
+try{if(localStorage.getItem('L'+location.pathname)==='en')setL('en');else upd()}catch(e){upd()}
 </script>
 </body>
 </html>
